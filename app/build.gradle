@@ -23,8 +23,8 @@ apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
     defaultConfig {
         applicationId "com.example.android.gdgfinder"
@@ -54,6 +54,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+//    Fragments
+    "androidx.fragment:fragment-ktx:$version_fragment"
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
 
@@ -68,6 +71,7 @@ dependencies {
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$version_navigation"
 
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"

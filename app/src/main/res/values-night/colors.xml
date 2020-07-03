@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!-- TODO(03) Use the material.io color picker to select a night-theme color palette,
-       then put the colors.xml in values-night/ (overwrite this file) -->
+  <color name="primaryColor">#1a237e</color>
+  <color name="primaryLightColor">#534bae</color>
+  <color name="primaryDarkColor">#000051</color>
+  <color name="secondaryColor">#ce93d8</color>
+  <color name="secondaryLightColor">#ffc4ff</color>
+  <color name="secondaryDarkColor">#9c64a6</color>
+  <color name="primaryTextColor">#ffffff</color>
+  <color name="secondaryTextColor">#000000</color>
 </resources>
 
