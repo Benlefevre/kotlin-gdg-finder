@@ -18,14 +18,14 @@
     <fragment android:id="@+id/gdg_apply" android:name="com.example.android.gdgfinder.add.AddGdgFragment"
               android:label="Apply" tools:layout="@layout/add_gdg_fragment"/>
 
-    <!--<fragment-->
-            <!--android:id="@+id/gdgDetailFragment"-->
-            <!--android:name="com.example.android.gdg.gdgdetail.GdgDetailFragment"-->
-            <!--android:label="fragment_overview"-->
-            <!--tools:layout="@layout/fragment_gdg_detail" >-->
-        <!--<argument-->
-        <!--android:name="selectedChapter"-->
-        <!--app:argType="com.example.android.gdg.network.GdgChapter"/>-->
-        <!--<action android:id="@+id/action_gdgDetailFragment_to_gdgListFragment" app:destination="@id/gdgListFragment"/>-->
-    <!--</fragment>-->
+<!--    <fragment-->
+<!--            android:id="@+id/gdgDetailFragment"-->
+<!--            android:name="com.example.android.gdg.gdgdetail.GdgDetailFragment"-->
+<!--            android:label="fragment_overview"-->
+<!--            tools:layout="@layout/fragment_gdg_detail" >-->
+<!--        <argument-->
+<!--        android:name="selectedChapter"-->
+<!--        app:argType="com.example.android.gdg.network.GdgChapter"/>-->
+<!--        <action android:id="@+id/action_gdgDetailFragment_to_gdgListFragment" app:destination="@id/gdgListFragment"/>-->
+<!--    </fragment>-->
 </navigation>

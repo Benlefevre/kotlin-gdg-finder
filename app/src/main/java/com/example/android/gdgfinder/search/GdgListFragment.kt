@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.gdgfinder.R
 import com.example.android.gdgfinder.databinding.FragmentGdgListBinding
 import com.google.android.gms.location.*
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import com.example.android.gdgfinder.R
 
 private const val LOCATION_PERMISSION_REQUEST = 1
 
@@ -25,7 +25,7 @@ class GdgListFragment : Fragment() {
 
 
     private val viewModel: GdgListViewModel by lazy {
-        ViewModelProviders.of(this).get(GdgListViewModel::class.java)
+        ViewModelProvider(this).get(GdgListViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ class GdgListFragment : Fragment() {
         val binding = FragmentGdgListBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
@@ -46,9 +46,8 @@ class GdgListFragment : Fragment() {
         // Sets the adapter of the RecyclerView
         binding.gdgChapterList.adapter = adapter
 
-        viewModel.showNeedLocation.observe(viewLifecycleOwner, object: Observer<Boolean> {
-            override fun onChanged(show: Boolean?) {
-                // Snackbar is like Toast but it lets us show forever
+        viewModel.showNeedLocation.observe(viewLifecycleOwner,
+            Observer<Boolean> { show -> // Snackbar is like Toast but it lets us show forever
                 if (show == true) {
                     Snackbar.make(
                         binding.root,
@@ -56,8 +55,7 @@ class GdgListFragment : Fragment() {
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
-            }
-        })
+            })
 
         viewModel.regionList.observe(viewLifecycleOwner, object: Observer<List<String>> {
             override fun onChanged(data: List<String>?) {
