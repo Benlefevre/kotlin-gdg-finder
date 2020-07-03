@@ -11,10 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.gdgfinder.R
 import com.example.android.gdgfinder.databinding.FragmentGdgListBinding
 import com.google.android.gms.location.*
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import com.example.android.gdgfinder.R
+import kotlinx.android.synthetic.main.add_gdg_fragment.*
 
 private const val LOCATION_PERMISSION_REQUEST = 1
 
@@ -58,17 +60,25 @@ class GdgListFragment : Fragment() {
             }
         })
 
-        // TODO (04) Create an observer on viewModel.regionList. Override the required
-        // onChanged() method to include the following changes.
-
-        // TODO (05) Create a new layoutInflator from the ChipGroup.
-
-        // TODO (06) Use the map() function to create a Chip for each item in regionList and
-        // return the results as a new list called children.
-
-        // TODO (07) Call chipGroup.removeAllViews() to remove any views already in chipGroup.
-
-        // TODO (08)  Iterate through the list of children and add each chip to chipGroup.
+        viewModel.regionList.observe(viewLifecycleOwner,
+            Observer<List<String>> {
+                it ?: return@Observer
+                val chipGroup = binding.regionList
+                val inflator = LayoutInflater.from(chipGroup.context)
+                val children = it.map { regionName ->
+                    val chip = inflator.inflate(R.layout.region, chipGroup,false) as Chip
+                    chip.text = regionName
+                    chip.tag = regionName
+                    chip.setOnCheckedChangeListener { buttonView, isChecked ->
+                        viewModel.onFilterChanged(button.tag as String, isChecked)
+                    }
+                    chip
+                }
+                chipGroup.removeAllViews()
+                children.forEach {
+                    chipGroup.addView(it)
+                }
+            })
 
         setHasOptionsMenu(true)
         return binding.root
