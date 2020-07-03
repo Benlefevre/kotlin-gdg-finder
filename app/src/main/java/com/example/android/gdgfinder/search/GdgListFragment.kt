@@ -11,11 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.gdgfinder.R
 import com.example.android.gdgfinder.databinding.FragmentGdgListBinding
 import com.google.android.gms.location.*
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
-import com.example.android.gdgfinder.R
+import kotlinx.android.synthetic.main.add_gdg_fragment.*
 
 private const val LOCATION_PERMISSION_REQUEST = 1
 
@@ -59,29 +60,25 @@ class GdgListFragment : Fragment() {
             }
         })
 
-        viewModel.regionList.observe(viewLifecycleOwner, object: Observer<List<String>> {
-            override fun onChanged(data: List<String>?) {
-                data ?: return
+        viewModel.regionList.observe(viewLifecycleOwner,
+            Observer<List<String>> {
+                it ?: return@Observer
                 val chipGroup = binding.regionList
                 val inflator = LayoutInflater.from(chipGroup.context)
-
-                val children = data.map { regionName ->
-                    val chip = inflator.inflate(R.layout.region, chipGroup, false) as Chip
+                val children = it.map { regionName ->
+                    val chip = inflator.inflate(R.layout.region, chipGroup,false) as Chip
                     chip.text = regionName
                     chip.tag = regionName
-                    chip.setOnCheckedChangeListener { button, isChecked ->
+                    chip.setOnCheckedChangeListener { buttonView, isChecked ->
                         viewModel.onFilterChanged(button.tag as String, isChecked)
                     }
                     chip
                 }
-
                 chipGroup.removeAllViews()
-
-                for (chip in children) {
-                    chipGroup.addView(chip)
+                children.forEach {
+                    chipGroup.addView(it)
                 }
-            }
-        })
+            })
 
         setHasOptionsMenu(true)
         return binding.root
