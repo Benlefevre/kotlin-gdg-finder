@@ -23,22 +23,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="4:3"/>
 
-        <!-- TODO (01) Open the Design tab and select the title TextView, then open its
-             attributes, scroll down to fontFamily, and select “More Fonts…” from the dropdown. -->
-
-        <!-- TODO (02) Select “Lobster Two, or any font you like, from the Resources
-             screen, then select OK to generate the font’s xml.  -->
         <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/about_google_developer_groups"
-                android:layout_marginTop="16dp"
-                android:textColor="#555555"
-                android:textSize="24sp"
-                app:layout_constraintTop_toBottomOf="@id/image"
-                app:layout_constraintEnd_toStartOf="@+id/end_grid"
-                app:layout_constraintStart_toStartOf="@+id/start_grid"/>
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/about_google_developer_groups"
+            android:textColor="#555555"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/end_grid"
+            app:layout_constraintStart_toStartOf="@+id/start_grid"
+            app:layout_constraintTop_toBottomOf="@id/image" />
 
         <TextView
                 android:id="@+id/intro_text"
